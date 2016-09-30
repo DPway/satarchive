@@ -1,0 +1,37 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>METEO-IS Place</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="author" content="Denіs Pishniak" />
+	<meta name="description" content="Демонстрационная и тестовая площадка для web проектов студии МЕТЕО-ИС" />
+	<link rel="shortcut icon" type="image/x-icon" href="images/ico1.ico">
+
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container"> 
+		<img id="satmap" src="/satarchive/2016-09-11-05-25.jpg" class="img-responsive" alt="Sat img (c) Sat24.com / Eumetsat / Met Office" width="845" height="615">
+
+	</div>
+
+	<script type="text/javascript">
+	var satimg = ["2016-09-11-03-55.jpg", "2016-09-11-04-10.jpg", "2016-09-11-04-25.jpg", "2016-09-11-04-40.jpg", "2016-09-11-04-55.jpg", "2016-09-11-05-10.jpg", "2016-09-11-05-25.jpg"];
+	var count = 1;
+	function swichcont(){
+      	if (count < 7){
+			var imUrl = "/satarchive/" + satimg[count];
+			document.getElementById('satmap').src = imUrl;
+			count++;
+	    }
+	    else {count = 1;}
+	    timerId = setTimeout(swichcont, 100);
+	}
+	var timerId = setTimeout(swichcont, 0);
+
+	</script>
+
+</body>

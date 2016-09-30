@@ -1,0 +1,1 @@
+cd /home/h63632/data/www/sat.meteo-is.in.ua/ && /usr/bin/php /home/h63632/data/www/sat.meteo-is.in.ua/roboscript.php
