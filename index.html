@@ -75,9 +75,9 @@
 	 <script type="text/javascript">
 		var i = 0;
 		function loadcount(){
-			i = i + 2;
+			i = i + 1.93;
 			document.getElementById("loadingbar").style.width = i.toString() + "%"
-			document.getElementById("loadingbar").textContent = i.toString() + "%";
+			document.getElementById("loadingbar").textContent = (Math.round(i)).toString() + "%";
 		}
 	</script>
 </head>
@@ -85,7 +85,7 @@
 	<div class="container"> 
 		<h2> Eumetsat images animated by METEO-IS.</h2>
 		<div class="row">
-  			<div class="col-sm-9">
+  			<div class="col-sm-9" style="padding-left:0;">
 	<img class="satframe img-responsive" src="/satarchive/2016-09-18-05-40.jpg" width="845" height="615" onload="loadcount()">
 	<img class="satframe img-responsive" src="/satarchive/2016-09-18-05-55.jpg" width="845" height="615" onload="loadcount()">
 	<img class="satframe img-responsive" src="/satarchive/2016-09-18-06-10.jpg" width="845" height="615" onload="loadcount()">
@@ -152,7 +152,9 @@
 				<div class="btn-group-vertical">
 					<a href="#" class="btn btn-primary btn-lg btn-block" role="button">15 min</a>
 					<a href="fivemin.php" class="btn btn-default btn-lg btn-block" role="button">5 min</a>
+					<a href="zipper.php" class="btn btn-success btn-lg btn-block" role="button" style="margin-top: 10px;">Download</a>
 				</div>
+
 			</div>
 		</div>
 	</div>

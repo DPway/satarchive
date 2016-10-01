@@ -83,9 +83,9 @@ fwrite($f,'
 	 <script type="text/javascript">
 		var i = 0;
 		function loadcount(){
-			i = i + 2;
+			i = i + 1.88;
 			document.getElementById("loadingbar").style.width = i.toString() + "%"
-			document.getElementById("loadingbar").textContent = i.toString() + "%";
+			document.getElementById("loadingbar").textContent = (Math.round(i)).toString() + "%";
 		}
 	</script>
 </head>
@@ -93,7 +93,7 @@ fwrite($f,'
 	<div class="container"> 
 		<h2> Eumetsat images animated by METEO-IS.</h2>
 		<div class="row">
-  			<div class="col-sm-9">
+  			<div class="col-sm-9" style="padding-left:0;">
 	');
 
 for ($qf = ($qdel+1); $qf < count($filearray); $qf++) {
@@ -107,12 +107,13 @@ fwrite($f,'	<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30p
 			<div class="col-sm-3">
 				<div class="progress" style="margin:10px;">
 				  <div id="loadingbar" class="progress-bar progress-bar-striped active" role="progressbar"
-				  	aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+				  	aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 				  </div>
 				</div>
 				<div class="btn-group-vertical">
 					<a href="#" class="btn btn-primary btn-lg btn-block" role="button">15 min</a>
 					<a href="fivemin.php" class="btn btn-default btn-lg btn-block" role="button">5 min</a>
+					<a href="zipper.php" class="btn btn-success btn-lg btn-block" role="button" style="margin-top: 10px;">Download</a>
 				</div>
 			</div>
 		</div>
@@ -155,6 +156,20 @@ fwrite($f,'].style.opacity = 0;
 	');
 fclose($f); 
 } 
+
+function delitter($way_2){
+if ($handle = opendir($way_2)) {
+    while (false !== ($filename = readdir($handle))) {
+        if ($filename != "." && $filename != "..") { 
+            $fileTimeV = filemtime($way_2 . $filename);
+            if ($fileTimeV < time() - 3600){
+				unlink($way_2 . $filename);
+            }
+        }
+    }
+}
+}
+delitter("zips15");
 
 ?>
 

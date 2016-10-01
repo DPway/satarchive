@@ -1,14 +1,4 @@
-<?php 
-
-    for ($qf = 0; $qf < 36; $qf++) {
-    	$timearray = getdate(time() -10800 + 300*$qf - 10800);
-    	$roundMin = round($timearray[minutes] / 5) * 5;
-    	$namearray[$qf] = ('http://en.sat24.com/image?type=infraPolair&region=eu&timestamp=' . $timearray[year] .
-	sprintf("%02d",$timearray[mon]) . sprintf("%02d", $timearray[mday]) . sprintf("%02d", $timearray[hours]) . 
-	sprintf("%02d", $roundMin));
-	}
-
-echo('<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 <head>
 	<title>Sat24 by METEO-IS</title>
@@ -18,13 +8,25 @@ echo('<!DOCTYPE HTML>
 	<link rel="shortcut icon" type="image/x-icon" href="images/ico1.ico">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>');
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<?php 
+for ($qf = 0; $qf < 36; $qf++) {
+    	$timearray = getdate(time() -10800 + 300*$qf - 10800);
+    	$roundMin = round($timearray[minutes] / 5) * 5;
+    	$namearray[$qf] = ('http://en.sat24.com/image?type=infraPolair&region=eu&timestamp=' . $timearray[year] .
+	sprintf("%02d",$timearray[mon]) . sprintf("%02d", $timearray[mday]) . sprintf("%02d", $timearray[hours]) . 
+	sprintf("%02d", $roundMin));
+	}
 
 for ($qf = 0; $qf < count($namearray); $qf++) {
 	echo('<link rel="prefetch" href="' . $namearray[$qf] . '">
 	');
 }
-echo('	<style type="text/css">
+?>
+
+	<style type="text/css">
 	 	.satframe{
 	 		position: absolute;
 	 		opacity: 0.1;
@@ -37,14 +39,15 @@ echo('	<style type="text/css">
 	<h2> Eumetsat images animated by METEO-IS.</h2>
 	<div class="row">
   		<div class="col-sm-9">
-	');
-
+	
+<?php
 for ($qf = 0; $qf < count($namearray); $qf++) {
 	echo('<img class="satframe img-responsive" src="' . $namearray[$qf] . '" width="845" height="615">
 	');
 }
+?>
 
-echo('<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30px;" src="' . $namearray[1] . '" width="845" height="615">
+<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30px;" src="' . $namearray[1] . '" width="845" height="615">
 		</div>
 			<div class="col-sm-3">
 				<div class="btn-group-vertical">
@@ -60,16 +63,12 @@ echo('<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30px;" sr
 	var countim = 0;
 	function swichcont(){
 	  var satmap = document.getElementsByClassName("satframe");
-      if (countim <= '); 
-echo(count($namearray)-2);
-echo('){
+      if (countim <= <?php echo(count($namearray)-2); ?> ){
       	if (countim >= 1){
 				satmap[countim-1].style.opacity = 0;
       	}
       	else{
-				satmap['); 
-echo(count($namearray)-2);
-echo('].style.opacity = 0;
+				satmap[ <?php echo(count($namearray)-2); ?> ].style.opacity = 0;
       	}
 			satmap[countim].style.opacity = 1;
 			countim++;
@@ -88,4 +87,3 @@ echo('].style.opacity = 0;
 
 </body>');
 
-?>
