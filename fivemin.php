@@ -89,7 +89,7 @@ echo('<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30px;" sr
 		tc = tc + 1;
 		if ((tc < 30) && (lc < 99)){
 			document.getElementById("timebar").style.width = (tc*3.33).toString() + "%"
-			document.getElementById("timebar").textContent = (Math.round(tc)).toString() + "s";
+			document.getElementById("timebar").textContent = (Math.round(30-tc)).toString() + "s";
 			var timerId2 = setTimeout(run_timer, 1000);
 		}
 		else{
