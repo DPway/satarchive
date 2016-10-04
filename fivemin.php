@@ -27,27 +27,52 @@ for ($qf = 0; $qf < count($namearray); $qf++) {
 ?>
 
 	<style type="text/css">
+	 	body{text-align: center;}
 	 	.satframe{
 	 		position: absolute;
-	 		opacity: 0.1;
-	 	}
-	 	body{text-align: center;}
+	 		opacity: 0.1;}
+	 	#bars{position: absolute; 
+	 		width:95%;
+	 		padding-top: 5%;
+	 		padding-left: 2%;}
+	 	.progress-bar{background-color: #4D1;}
 	</style>
+	<script type="text/javascript">
+		var lc = 0;
+		function loadcount(){
+			lc = lc + 100/ <?php echo(count($namearray)) ?> ;
+			document.getElementById("loadingbar").style.width = lc.toString() + "%"
+			document.getElementById("loadingbar").textContent = (Math.round(lc)).toString() + "%";
+		}
+	</script>
 </head>
 <body>
 <div class="container">
-	<h2> Eumetsat images animated by METEO-IS.</h2>
+	<h2> EUMETSAT images animated by METEO-IS.</h2>
 	<div class="row">
   		<div class="col-sm-9">
 	
 <?php
 for ($qf = 0; $qf < count($namearray); $qf++) {
-	echo('<img class="satframe img-responsive" src="' . $namearray[$qf] . '" width="845" height="615">
+	echo('<img class="satframe img-responsive" src="' . $namearray[$qf] . '" width="845" height="615" onload="loadcount()">
 	');
 }
 ?>
-
-<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30px;" src="' . $namearray[1] . '" width="845" height="615">
+<div id="bars">
+	<div class="progress" style="margin:1%;">
+		<div id="loadingbar" class="progress-bar progress-bar-striped active" role="progressbar"
+			  	aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+		</div>
+	</div>
+	<div class="progress" style="margin:1%;">
+		<div id="timebar" class="progress-bar progress-bar-striped active" role="progressbar"
+			  	aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+		</div>
+	</div>
+</div>
+<?php
+echo('<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30px;" src="' . $namearray[1] . '" width="845" height="615">');
+?>	
 		</div>
 			<div class="col-sm-3">
 				<div class="btn-group-vertical">
@@ -59,6 +84,20 @@ for ($qf = 0; $qf < count($namearray); $qf++) {
 	</div>
 
 	<script type="text/javascript">
+	var tc = 0;
+	function run_timer(){
+		tc = tc + 1;
+		if ((tc < 30) && (lc < 99)){
+			document.getElementById("timebar").style.width = (tc*3.33).toString() + "%"
+			document.getElementById("timebar").textContent = (Math.round(tc)).toString() + "s";
+			var timerId2 = setTimeout(run_timer, 1000);
+		}
+		else{
+			swichcont();
+			document.getElementById("bars").style.display = "none";
+		}
+	}
+	run_timer();
 		
 	var countim = 0;
 	function swichcont(){
@@ -81,9 +120,9 @@ for ($qf = 0; $qf < count($namearray); $qf++) {
 
 	    
 	}
-	var timerId = setTimeout(swichcont, 10000);
 
 	</script>
 
-</body>');
+</body>
+</html>
 

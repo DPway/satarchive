@@ -1,6 +1,7 @@
 
 
 <?php 
+sleep(300); // Wait 5 min
 
 $timearray = getdate(time() - 11100);             // -5 minutes -3 hours  (7500  -2 hours winter time)
 $roundMin = round($timearray[minutes] / 5) * 5;
@@ -74,24 +75,28 @@ fwrite($f,'
 	}
 fwrite($f,'
 	 <style type="text/css">
+	 	body{text-align: center;}
 	 	.satframe{
 	 		position: absolute;
-	 		opacity: 0.1;
-	 	}
-	 	body{text-align: center;}
+	 		opacity: 0.1;}
+	 	#bars{position: absolute; 
+	 		width:95%;
+	 		padding-top: 5%;
+	 		padding-left: 2%;}
+	 	.progress-bar{background-color: #4D1;}
 	 </style>
 	 <script type="text/javascript">
-		var i = 0;
+		var lc = 0;
 		function loadcount(){
-			i = i + 1.88;
-			document.getElementById("loadingbar").style.width = i.toString() + "%"
-			document.getElementById("loadingbar").textContent = (Math.round(i)).toString() + "%";
+			lc = lc + 100/(' . count($filearray) . '-1);
+			document.getElementById("loadingbar").style.width = lc.toString() + "%"
+			document.getElementById("loadingbar").textContent = (Math.round(lc)).toString() + "%";
 		}
 	</script>
 </head>
 <body>
 	<div class="container"> 
-		<h2> Eumetsat images animated by METEO-IS.</h2>
+		<h2> EUMETSAT images animated by METEO-IS.</h2>
 		<div class="row">
   			<div class="col-sm-9" style="padding-left:0;">
 	');
@@ -101,15 +106,23 @@ for ($qf = ($qdel+1); $qf < count($filearray); $qf++) {
 	');
 }
 
-fwrite($f,'	<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30px;" src="/satarchive/' . $filearray[1] . '" width="845" height="615">
+fwrite($f,'	
+	<div id="bars">
+		<div class="progress" style="margin:1%;">
+			<div id="loadingbar" class="progress-bar progress-bar-striped active" role="progressbar"
+				  	aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+			</div>
+		</div>
+		<div class="progress" style="margin:1%;">
+			<div id="timebar" class="progress-bar progress-bar-striped active" role="progressbar"
+				  	aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+			</div>
+		</div>
+	</div>
+	<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30px;" src="/satarchive/' . $filearray[1] . '" width="845" height="615">
 
 			</div>
 			<div class="col-sm-3">
-				<div class="progress" style="margin:10px;">
-				  <div id="loadingbar" class="progress-bar progress-bar-striped active" role="progressbar"
-				  	aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-				  </div>
-				</div>
 				<div class="btn-group-vertical">
 					<a href="#" class="btn btn-primary btn-lg btn-block" role="button">15 min</a>
 					<a href="fivemin.php" class="btn btn-default btn-lg btn-block" role="button">5 min</a>
@@ -120,6 +133,20 @@ fwrite($f,'	<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30p
 	</div>
 
 	<script type="text/javascript">
+	var tc = 0;
+	function run_timer(){
+		tc = tc + 1;
+		if ((tc < 30) && (lc < 99)){
+			document.getElementById("timebar").style.width = (tc*3.333).toString() + "%"
+			document.getElementById("timebar").textContent = (Math.round(tc)).toString() + "s";
+			var timerId2 = setTimeout(run_timer, 1000);
+		}
+		else{
+			swichcont();
+			document.getElementById("bars").style.display = "none";
+		}
+	}
+	run_timer();
 		
 	var countim = 0;
 	function swichcont(){
@@ -146,7 +173,6 @@ fwrite($f,'].style.opacity = 0;
 
 	    
 	}
-	var timerId = setTimeout(swichcont, 10000);
 
 	</script>
 
@@ -161,9 +187,9 @@ function delitter($way_2){
 if ($handle = opendir($way_2)) {
     while (false !== ($filename = readdir($handle))) {
         if ($filename != "." && $filename != "..") { 
-            $fileTimeV = filemtime($way_2 . $filename);
+            $fileTimeV = filemtime($way_2 . '/' . $filename);
             if ($fileTimeV < time() - 3600){
-				unlink($way_2 . $filename);
+				unlink($way_2 . '/' . $filename);
             }
         }
     }

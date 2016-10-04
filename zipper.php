@@ -47,6 +47,7 @@ header ("Content-Type: application/octet-stream");
 header ("Accept-Ranges: bytes");
 header ("Content-Length: ".filesize($zipName));
 header ("Content-Disposition: attachment; filename=".$zipName);  
+sleep(5);
 readfile($zipName);
 }
 
