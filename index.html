@@ -5,20 +5,13 @@
 	<title>Sat24 by METEO-IS</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="author" content="Denіs Pishniak" />
-	<meta name="description" content="Meteo weather satellite animation" />
+	<meta name="description" content="Weather satellite animation." />
 	<link rel="shortcut icon" type="image/x-icon" href="images/ico1.ico">
 
+	<link href="https://fonts.googleapis.com/css?family=Cairo:700" rel="stylesheet">	
 	<link rel="stylesheet" href="bootstr/bootstrap.min.css">
-  	<script src="bootstr/jquery-3.1.0.min.js"></script>
-  	<script src="bootstr/bootstrap.min.js"></script>
-	<link rel="prefetch" href="/satarchive/2016-09-18-07-10.jpg">
-	<link rel="prefetch" href="/satarchive/2016-09-18-07-25.jpg">
-	<link rel="prefetch" href="/satarchive/2016-09-18-07-40.jpg">
-	<link rel="prefetch" href="/satarchive/2016-09-18-07-55.jpg">
-	<link rel="prefetch" href="/satarchive/2016-09-18-08-10.jpg">
-	<link rel="prefetch" href="/satarchive/2016-09-18-08-25.jpg">
-	<link rel="prefetch" href="/satarchive/2016-09-18-08-40.jpg">
-	<link rel="prefetch" href="/satarchive/2016-09-18-08-55.jpg">
+	<script src="bootstr/jquery-3.1.0.min.js"></script>
+	<script src="bootstr/bootstrap.min.js"></script>
 	<link rel="prefetch" href="/satarchive/2016-09-18-09-10.jpg">
 	<link rel="prefetch" href="/satarchive/2016-09-18-09-25.jpg">
 	<link rel="prefetch" href="/satarchive/2016-09-18-09-40.jpg">
@@ -61,22 +54,52 @@
 	<link rel="prefetch" href="/satarchive/2016-10-04-15-50.jpg">
 	<link rel="prefetch" href="/satarchive/2016-10-04-16-05.jpg">
 	<link rel="prefetch" href="/satarchive/2016-10-04-16-10.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-04-20-50.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-08-20.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-11-35.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-11-40.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-11-45.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-11-50.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-11-55.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-11-60.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-12-00.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-12-05.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-12-10.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-12-25.jpg">
+	<link rel="prefetch" href="/satarchive/2016-10-20-14-45.jpg">
 	
 	 <style type="text/css">
-	 	body{text-align: center;}
-	 	.satframe{
-	 		position: absolute;
-	 		opacity: 0.1;}
-	 	#bars{position: absolute; 
-	 		width:95%;
-	 		padding-top: 5%;
-	 		padding-left: 2%;}
-	 	.progress-bar{background-color: #4D1;}
+		body{text-align: center;}
+		p{font-size: 16px;}
+		.satframe{
+			position: absolute;
+			opacity: 0.1;}
+		#bars{position: absolute; 
+			width:95%;
+			padding-top: 3%;
+			padding-left: 2%;}
+		#bars>h3{color: #5F0;
+			text-shadow: 1px 1px 5px black;}
+		.progress-bar{background-color: #4D1;}
+		h1{font-family: "Cairo", sans-serif;
+			padding-bottom: 2%;
+			color: #679;}
+		@media screen and (min-width: 240px) and (max-width: 700px) {
+			h1{font-size: 25px;}
+		}
+
 	 </style>
 	 <script type="text/javascript">
+	 	var pageUrl = window.location.href; 
+	 	if(pageUrl.indexOf("1h.html") + 1){
+	 		alert("111")
+	 		document.getElementById("bt2").classList.toggle("btn-default btn-primary"); }
+	 	elseif(pageUrl.indexOf("index.html") + 1){
+	 		document.getElementById("bt3").classList.toggle("btn-default btn-primary"); }
+
 		var lc = 0;
 		function loadcount(){
-			lc = lc + 100/(52-1);
+			lc = lc + 100/(55-1);
 			document.getElementById("loadingbar").style.width = lc.toString() + "%"
 			document.getElementById("loadingbar").textContent = (Math.round(lc)).toString() + "%";
 		}
@@ -84,18 +107,9 @@
 </head>
 <body>
 	<div class="container"> 
-		<h2> EUMETSAT images animated by METEO-IS.</h2>
+		<h1> EUMETSAT images animated by METEO-IS.</h1>
 		<div class="row">
-  			<div class="col-sm-9" style="padding-left:0;">
-	<img class="satframe img-responsive" src="/satarchive/2016-09-18-06-55.jpg" width="845" height="615" onload="loadcount()">
-	<img class="satframe img-responsive" src="/satarchive/2016-09-18-07-10.jpg" width="845" height="615" onload="loadcount()">
-	<img class="satframe img-responsive" src="/satarchive/2016-09-18-07-25.jpg" width="845" height="615" onload="loadcount()">
-	<img class="satframe img-responsive" src="/satarchive/2016-09-18-07-40.jpg" width="845" height="615" onload="loadcount()">
-	<img class="satframe img-responsive" src="/satarchive/2016-09-18-07-55.jpg" width="845" height="615" onload="loadcount()">
-	<img class="satframe img-responsive" src="/satarchive/2016-09-18-08-10.jpg" width="845" height="615" onload="loadcount()">
-	<img class="satframe img-responsive" src="/satarchive/2016-09-18-08-25.jpg" width="845" height="615" onload="loadcount()">
-	<img class="satframe img-responsive" src="/satarchive/2016-09-18-08-40.jpg" width="845" height="615" onload="loadcount()">
-	<img class="satframe img-responsive" src="/satarchive/2016-09-18-08-55.jpg" width="845" height="615" onload="loadcount()">
+			<div class="col-md-9" style="padding-left:0;">
 	<img class="satframe img-responsive" src="/satarchive/2016-09-18-09-10.jpg" width="845" height="615" onload="loadcount()">
 	<img class="satframe img-responsive" src="/satarchive/2016-09-18-09-25.jpg" width="845" height="615" onload="loadcount()">
 	<img class="satframe img-responsive" src="/satarchive/2016-09-18-09-40.jpg" width="845" height="615" onload="loadcount()">
@@ -138,27 +152,43 @@
 	<img class="satframe img-responsive" src="/satarchive/2016-10-04-15-50.jpg" width="845" height="615" onload="loadcount()">
 	<img class="satframe img-responsive" src="/satarchive/2016-10-04-16-05.jpg" width="845" height="615" onload="loadcount()">
 	<img class="satframe img-responsive" src="/satarchive/2016-10-04-16-10.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-04-20-50.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-08-20.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-11-35.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-11-40.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-11-45.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-11-50.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-11-55.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-11-60.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-12-00.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-12-05.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-12-10.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-12-25.jpg" width="845" height="615" onload="loadcount()">
+	<img class="satframe img-responsive" src="/satarchive/2016-10-20-14-45.jpg" width="845" height="615" onload="loadcount()">
 		
 	<div id="bars">
+		<h3>Loading...</h3>
 		<div class="progress" style="margin:1%;">
 			<div id="loadingbar" class="progress-bar progress-bar-striped active" role="progressbar"
-				  	aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+					aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 			</div>
 		</div>
 		<div class="progress" style="margin:1%;">
 			<div id="timebar" class="progress-bar progress-bar-striped active" role="progressbar"
-				  	aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+					aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 			</div>
 		</div>
 	</div>
-	<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30px;" src="/satarchive/2016-09-18-06-55.jpg" width="845" height="615">
+	<img class="img-responsive" style="opacity: 0.0; padding-bottom: 30px;" src="/satarchive/2016-09-18-09-25.jpg" width="845" height="615">
 
 			</div>
-			<div class="col-sm-3">
+			<div class="col-md-3">
+				<p>Frame interval</p>
 				<div class="btn-group-vertical">
-					<a href="#" class="btn btn-primary btn-lg btn-block" role="button">15 min</a>
-					<a href="fivemin.php" class="btn btn-default btn-lg btn-block" role="button">5 min</a>
-					<a href="zipper.php" class="btn btn-success btn-lg btn-block" role="button" style="margin-top: 10px;">Download</a>
+					<a id="bt2" href="1h.html" class="btn btn-default btn-lg btn-block" role="button">1 hour</a>
+					<a id="bt3" href="index.html" class="btn btn-primary btn-lg btn-block" role="button">15 min</a>
+					<a id="bt4" href="fivemin.php" class="btn btn-default btn-lg btn-block" role="button">5 min</a>
+					<a id="bt5" href="zipper15m.php" class="btn btn-success btn-lg btn-block" role="button" style="margin-top: 10px;">Download .zip</a>
 				</div>
 			</div>
 		</div>
@@ -170,7 +200,7 @@
 		tc = tc + 1;
 		if ((tc < 30) && (lc < 99)){
 			document.getElementById("timebar").style.width = (tc*3.333).toString() + "%"
-			document.getElementById("timebar").textContent = (Math.round(tc)).toString() + "s";
+			document.getElementById("timebar").textContent = (Math.round(30-tc)).toString() + "s";
 			var timerId2 = setTimeout(run_timer, 1000);
 		}
 		else{
@@ -183,23 +213,23 @@
 	var countim = 0;
 	function swichcont(){
 	  var satmap = document.getElementsByClassName("satframe");
-      if (countim <= 50){
-      	if (countim >= 1){
+	  if (countim <= 53){
+		if (countim >= 1){
 				satmap[countim-1].style.opacity = 0;
-      	}
-      	else{
-				satmap[50].style.opacity = 0;
-      	}
+		}
+		else{
+				satmap[53].style.opacity = 0;
+		}
 			satmap[countim].style.opacity = 1;
 			countim++;
 			timerId = setTimeout(swichcont, 100);
-	    }
-	    else {
-	    	countim = 0;
-	    	timerId = setTimeout(swichcont, 2000);
-	    }
+		}
+		else {
+			countim = 0;
+			timerId = setTimeout(swichcont, 2000);
+		}
 
-	    
+		
 	}
 
 	</script>
